@@ -1,54 +1,66 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
 
-    <title>Buddha Word</title>
+  <title>Sutra Words</title>
 
-    <link rel="stylesheet" href="./static/index.css">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+  <link rel="stylesheet" href="./static/index.css">
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 </head>
 
 <body>
-<h1>佛言几词？</h1>
 
-<div>
-    <label>
-        上载佛言：
-        <input type="file" id="fileInput" accept="text/plain,.txt">
-    </label>
-</div>
+<h1 class="title">经有几词？</h1>
 
-<div>
-    <label>
-        选定分隔符:
-        <select value="/" id="dividerSelect">
-            <option value="/">/</option>
-            <option value=",">,</option>
-            <option value=" ">空格</option>
-        </select>
-    </label>
-</div>
+<div class="content">
+  <div class="content-row">
+    <label for="fileInput" class="content-label">上载经言：</label>
+    <input id="fileInput" class="content-component" type="file" accept="text/plain,.txt">
+  </div>
 
-<div>
-    <label>处理：</label>
-    <button id="submitButton">分析词频</button>
-</div>
+  <div class="content-row">
+    <label for="dividerSelect" class="content-label">分词符:</label>
+    <select id="dividerSelect" class="content-component">
+      <option value="/" selected>/</option>
+      <option value=",">,</option>
+      <option value=" ">空格</option>
+    </select>
+  </div>
 
-<div>
-    <table id="resultTable" aria-label="结果">
+  <div class="content-row">
+    <label for="submitButton" class="content-label">处理：</label>
+    <button id="submitButton" class="content-component">分析词频</button>
+    <button id="downloadButton" class="content-component" disabled>下载结果</button>
+  </div>
+
+  <div class="result-row">
+    <hr>
+
+    <div class="result-container">
+      <table id="resultTable" aria-label="结果">
         <thead>
         <tr>
-            <th scope="col">词语</th>
-            <th scope="col">数量</th>
+          <th scope="col">#</th>
+          <th scope="col">词语</th>
+          <th scope="col">数量</th>
         </tr>
         </thead>
         <tbody></tbody>
-    </table>
+      </table>
+    </div>
+  </div>
+
+  <div id="fox" class="fox">
+    <img src="./static/f00.gif" alt="fox" style="display: none">
+    <img src="./static/f01.gif" alt="fox" style="display: none">
+    <img src="./static/f02.gif" alt="fox" style="display: none">
+    <img src="./static/f03.gif" alt="fox" style="display: none">
+  </div>
 </div>
 
 <script src="./static/util.js"></script>
