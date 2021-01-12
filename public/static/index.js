@@ -10,7 +10,6 @@
   const eleResultTable = document.getElementById('resultTable')
   const eleResultContainer = eleResultTable.getElementsByTagName('tbody')[0]
 
-
   // File reader
   eleFileInput.addEventListener('change', function (event) {
     file = event.target.files[0]
@@ -21,7 +20,7 @@
       return
     }
 
-    // Check Filereader
+    // Check FileReader
     if (!FileReader) {
       alert('环境不支持读取文件，请使用 Chrome 7+ / Edge 12+ / Firefox 4+ 等浏览器。')
       return
@@ -53,13 +52,13 @@
   }, false)
 
   // Set web workers
-  function setWorkers(data) {
+  function setWorkers (data) {
     if (
       (window.Worker)
       && (navigator.hardwareConcurrency && navigator.hardwareConcurrency > 0)
     ) {
       // use worker thread
-      const worker = new Worker("./static/worker.js")
+      const worker = new Worker('./static/worker.js')
 
       worker.onmessage = function (e) {
         renderResult(e.data)
@@ -67,7 +66,7 @@
 
       worker.postMessage({
         textArray: data.textArray
-      });
+      })
     } else {
       // use main thread
       renderResult(window._util.processText(data.textArray))
@@ -75,7 +74,7 @@
   }
 
   // Render result
-  function renderResult(result) {
+  function renderResult (result) {
     let resultHTML = ''
     let resultDownloadData = '\ufeff'
 
@@ -89,17 +88,17 @@
     saveCsv(resultDownloadData)
   }
 
-  function saveCsv(data) {
-    let a = document.createElement('a');
+  function saveCsv (data) {
+    let a = document.createElement('a')
     let blob = new Blob([data], { type: 'text/csv;charset=utf-8;' })
     let url = window.URL.createObjectURL(blob)
-    document.body.appendChild(a);
-    a.style = "display: none";
-    a.href = url;
-    a.download = 'my_data.csv';
-    a.click();
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
+    document.body.appendChild(a)
+    a.style.display  = 'none'
+    a.href = url
+    a.download = 'count_data.csv'
+    a.click()
+    window.URL.revokeObjectURL(url)
+    document.body.removeChild(a)
   }
 
 })()
